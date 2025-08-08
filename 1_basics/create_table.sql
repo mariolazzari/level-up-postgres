@@ -1,14 +1,3 @@
-# Level up PostgreSQL
-
-## Basics
-
-### Creating table
-
-```sh
-psql linkedin
-```
-
-```sql
 CREATE TABLE customers (
     customer_id serial PRIMARY KEY,
     firstname VARCHAR(100) NOT NULL,
@@ -18,4 +7,3 @@ CREATE TABLE customers (
     email VARCHAR(255) UNIQUE NOT NULL,
     created_on TIMESTAMPTZ NOT NULL
 );
-```
