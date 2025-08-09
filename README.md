@@ -29,6 +29,9 @@ VALUES('Mario', 'Lazzari', 'mario', 'mypassword', 'mario.lazzari@gmail.com', CUR
 INSERT INTO customers(firstname, lastname, username, password, email, created_on)
 VALUES('Mariarosa', 'Sbardellati', 'mary', 'mypassword', 'mariarosa.sbardellati@gmail.com', CURRENT_TIMESTAMP),
 ('Maria', 'Lazzari', 'maria', 'mypassword', 'mariafilippinilazzari@gmail.com', CURRENT_TIMESTAMP);
+
+SELECT * 
+FROM customers
 ```
 
 ### Altering records
@@ -37,6 +40,26 @@ VALUES('Mariarosa', 'Sbardellati', 'mary', 'mypassword', 'mariarosa.sbardellati@
 UPDATE customers
 SET username = 'mario.lazzari'
 WHERE email = 'mario.lazzari@gmail.com';
+
+SELECT * 
+FROM customers
+WHERE username = 'mario.lazzari'
 ```
 
-### 
+### Locating records
+
+```sql
+CREATE TABLE usernames AS 
+SELECT username
+FROM customers
+WHERE email like '%@gmail.com';
+
+SELECT *
+from usernames
+```
+
+### Sorting records
+
+```sql
+
+```
