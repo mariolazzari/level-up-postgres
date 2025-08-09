@@ -66,3 +66,19 @@ FROM customers
 WHERE length(password) < 12
 ORDER BY length(password)
 ```
+
+### Deleting records
+
+```sql
+DELETE 
+FROM usernames
+WHERE username = 'mario.lazzari'
+RETURNING *;
+
+
+DELETE 
+FROM usernames
+RETURNING *;
+```
+
+## 
