@@ -81,4 +81,20 @@ FROM usernames
 RETURNING *;
 ```
 
-## 
+### Readonly user
+
+```sql
+CREATE USER tmpuser
+WITH PASSWORD 'tmppassword'
+VALID UNTIL '2025-01-01'
+
+GRANT pg_real_all_data to tmpuser
+```
+
+## Leveling up
+
+### Foreign key
+
+```sql
+
+```
