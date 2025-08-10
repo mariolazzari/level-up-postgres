@@ -1,6 +1,6 @@
 DELETE 
 FROM usernames
-WHERE username = 'mario.lazzari'
+WHERE username = 'kiaradiamond'
 RETURNING *;
 
 DELETE 

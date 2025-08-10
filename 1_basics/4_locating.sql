@@ -1,4 +1,4 @@
 CREATE TABLE usernames AS 
 SELECT username
 FROM customers
-WHERE email like '%@gmail.com';
+WHERE email like '%@myemail.com';

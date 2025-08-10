@@ -23,27 +23,24 @@ CREATE TABLE customers (
 ### Inserting records
 
 ```sql
-INSERT INTO customers(firstname, lastname, username, password, email, created_on)
-VALUES('Mario', 'Lazzari', 'mario', 'mypassword', 'mario.lazzari@gmail.com', CURRENT_TIMESTAMP);
-
-INSERT INTO customers(firstname, lastname, username, password, email, created_on)
-VALUES('Mariarosa', 'Sbardellati', 'mary', 'mypassword', 'mariarosa.sbardellati@gmail.com', CURRENT_TIMESTAMP),
-('Maria', 'Lazzari', 'maria', 'mypassword', 'mariafilippinilazzari@gmail.com', CURRENT_TIMESTAMP);
-
-SELECT * 
-FROM customers
+INSERT INTO customers (firstname, lastname, username, password, email, created_on)
+VALUES ('Alison', 'Riesher', 'alisoninthesun', 'l09+#k$nalA!', 'sunnysideup@myemail.com', CURRENT_TIMESTAMP),
+    ('Edgar', 'Tobin', 'edgar163', 'BSI@uj0_qwT%', 'edgar163@email.com', CURRENT_TIMESTAMP),
+    ('Frank', 'Lawson', 'frank_lawson', '32oktn*_WKn89', 'frank@lawsonhardware.com', CURRENT_TIMESTAMP),
+    ('Kiara', 'Mendez', 'kiaradiamond', '9s9dSn$LStt', 'kdiamond@myemail.com', CURRENT_TIMESTAMP),
+    ('Taylor', 'Hiu', 'taytay89', 'U09$hjqlaBM', 'taytay89@myemail.com', CURRENT_TIMESTAMP);
 ```
 
 ### Altering records
 
 ```sql
 UPDATE customers
-SET username = 'mario.lazzari'
-WHERE email = 'mario.lazzari@gmail.com';
+SET username = 'sunnysideup'
+WHERE email = 'sunnysideup@myemail.com';
 
 SELECT * 
 FROM customers
-WHERE username = 'mario.lazzari'
+WHERE username = 'sunnysideup'
 ```
 
 ### Locating records
@@ -52,7 +49,7 @@ WHERE username = 'mario.lazzari'
 CREATE TABLE usernames AS 
 SELECT username
 FROM customers
-WHERE email like '%@gmail.com';
+WHERE email like '%@myemail.com';
 
 SELECT *
 from usernames
@@ -72,9 +69,8 @@ ORDER BY length(password)
 ```sql
 DELETE 
 FROM usernames
-WHERE username = 'mario.lazzari'
+WHERE username = 'kiaradiamond'
 RETURNING *;
-
 
 DELETE 
 FROM usernames
@@ -96,5 +92,22 @@ GRANT pg_real_all_data to tmpuser
 ### Foreign key
 
 ```sql
-
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,  -- Auto-incrementing primary key
+    pirchase_total NUMERIC(10, 2) NOT NULL,  -- Money-like number, 2 decimal places
+    order_datetime TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    customer_id INT REFERENCES customers(customer_id) ON DELETE CASCADE
+);
 ```
+
+### Top totals
+
+```sql
+SELECT customer_id, SUM(purchase_total) as purchases
+FROM orders
+GROUP BY customer_id
+ORDER BY purchases DESC
+LIMIT 2
+```
+
+### 

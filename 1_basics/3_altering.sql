@@ -1,3 +1,3 @@
 UPDATE customers
-SET username = 'mario.lazzari'
-WHERE email = 'mario.lazzari@gmail.com';
+SET username = 'sunnysideup'
+WHERE email = 'sunnysideup@myemail.com';
