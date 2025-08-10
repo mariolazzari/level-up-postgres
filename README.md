@@ -110,4 +110,22 @@ ORDER BY purchases DESC
 LIMIT 2
 ```
 
-### 
+### Subquery to insert
+
+```sql
+INSERT INTO orders(purchase_total, timestamp, customer_id)
+VALUES (100, CURRENT_TIMESTAMP, (SELECT customer_id from customers where email = 'edgar163@email.com'))
+RETURNING *;
+```
+
+### Handling duplicates
+
+```sql
+DELETE FROM bookmarks
+WHERE id in (
+    SELECT id FROM bookmarks
+    EXCEPT SELECT MAX(id) 
+    FROM bookmarks
+    GROUP BY url, name, description)
+RETURNING *;
+```
