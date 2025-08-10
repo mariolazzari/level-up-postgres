@@ -161,7 +161,15 @@ GROUP BY c.customer_id, c.email;
 
 ### Pattern matching
 
-```go
+```sql
+UPDATE customers
+SET phone_number = REGEXP_REPLACE(phone_number, '[^0-9]','','g')
+WHERE phone_number ~ '[^0-9]';
+```
+
+### Filtering sensitive data
+
+```sql
 
 ```
 
