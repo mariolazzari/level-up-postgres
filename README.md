@@ -129,3 +129,39 @@ WHERE id in (
     GROUP BY url, name, description)
 RETURNING *;
 ```
+
+### Inner join
+
+```sql
+SELECT o.order_id, o.purchase_total, c.email 
+FROM orders AS o
+INNER JOIN customers AS c on o.customer_id = c.customer_id 
+```
+
+### Outer join
+
+```sql
+SELECT p.program_name, count(s.student_id)
+FROM programs as p
+LEFT OUTER JOIN students s on p.program_id = s.program_id
+GROUP BY p.program_name
+```
+
+### Temporary table
+
+```sql
+CREATE TEMPORARY TABLE sales AS
+SELECT c.customer_id, c.email, sum(o.purchase_total) as total
+FROM customers as c
+INNER JOIN orders as o on c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.email;
+```
+
+## Just for fun
+
+### Pattern matching
+
+```go
+
+```
+
