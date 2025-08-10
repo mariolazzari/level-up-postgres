@@ -174,3 +174,20 @@ SELECT firstname || ' ' || LEFT(lastname,1) || '.' as fullname, email,
     LEFT(phone_number, LENGTH(phone_number) - 4) || '****' as phone
 FROM customers;
 ```
+
+### Update order status
+
+```sql
+UPDATE orders
+SET status = CASE
+    WHEN order_id < 15 or TIMESTAMP < '2025-08-01' 
+        THEN 'Shipped'
+    ELSE 'Preparing for shipment'
+END
+```
+
+### Data cleanup
+
+```sql
+
+```
