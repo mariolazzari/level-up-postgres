@@ -189,5 +189,14 @@ END
 ### Data cleanup
 
 ```sql
+UPDATE orders
+set street = INITCAP(TRIM(street)), 
+    city = INITCAP(TRIM(city)), 
+    state = UPPER(TRIM(state))
+```
+
+### Fictious data
+
+```sql
 
 ```
