@@ -198,5 +198,33 @@ set street = INITCAP(TRIM(street)),
 ### Fictious data
 
 ```sql
+INSERT INTO bookmarks(url, name, description)
+SELECT 'https://site.com' || generate_series as url, 
+    'Site' || generate_series as name,
+    'Description' || generate_series as description
+FROM generate_series(1,50);
+```
 
+### Encrypting password
+
+```sql
+ALTER TABLE users 
+    ADD COLUMN hash VARCHAR(255),
+    ADD COLUMN salt VARCHAR(255);
+
+UPDATE users
+set salt = substr(md5(random()::text),1,16);
+
+UPDATE users
+set hash = md5(concat(salt, password));
+```
+
+### Cancel running query
+
+```sql
+SELECT pid, query, xact_start, wait_event, wait_event_type
+FROM pg_stat_activity
+WHERE backend_type = 'client backend' AND wait_event is NOT NULL;
+
+SELECT pg_cancel_backend(82619);
 ```
